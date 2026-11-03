@@ -61,8 +61,8 @@ public class MainActivity extends Activity {
   private void showMusic(String query){
     if(musicDialog==null){
       musicDialog=new android.app.Dialog(this);
-      android.widget.LinearLayout layout=new android.widget.LinearLayout(this);layout.setOrientation(1);layout.setBackgroundColor(0xff101b31);
-      android.widget.LinearLayout bar=new android.widget.LinearLayout(this);bar.setOrientation(0);
+      android.widget.LinearLayout layout=new android.widget.LinearLayout(this);layout.setOrientation(android.widget.LinearLayout.VERTICAL);layout.setBackgroundColor(0xff101b31);
+      android.widget.LinearLayout bar=new android.widget.LinearLayout(this);bar.setOrientation(android.widget.LinearLayout.HORIZONTAL);
       android.widget.Button back=new android.widget.Button(this);back.setText("رجوع");back.setOnClickListener(v->{if(musicWeb.canGoBack())musicWeb.goBack();});bar.addView(back);
       android.widget.TextView title=new android.widget.TextView(this);title.setText("SoundCloud · ابحث ثم اضغط تشغيل");title.setTextColor(0xffffffff);title.setPadding(12,12,12,12);bar.addView(title,new android.widget.LinearLayout.LayoutParams(0,-2,1));
       android.widget.Button close=new android.widget.Button(this);close.setText("إخفاء");close.setOnClickListener(v->musicDialog.hide());bar.addView(close);layout.addView(bar);
