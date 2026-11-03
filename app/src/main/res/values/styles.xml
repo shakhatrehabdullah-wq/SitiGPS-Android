@@ -1,1 +1,3 @@
-<resources><style name="Theme.Siti" parent="android:style/Theme.Material.NoActionBar"><item name="android:windowLightStatusBar">false</item><item name="android:windowActionModeOverlay">true</item><item name="android:colorAccent">#11e4d2</item><item name="android:windowFullscreen">true</item><item name="android:windowNoTitle">true</item><item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item></style></resources>
+<resources><style name="BaseTheme.Siti" parent="android:style/Theme.Material.NoActionBar"><item name="android:windowLightStatusBar">false</item><item name="android:windowActionModeOverlay">true</item><item name="android:colorAccent">#11e4d2</item><item name="android:windowFullscreen">true</item><item name="android:windowNoTitle">true</item></style><style name="Theme.Siti" parent="BaseTheme.Siti"/></resources>
+
+

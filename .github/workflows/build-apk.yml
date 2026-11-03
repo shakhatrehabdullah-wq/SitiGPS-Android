@@ -22,7 +22,11 @@ jobs:
           SDK_MANAGER=$(find "$ANDROID_HOME/cmdline-tools" -type f -name sdkmanager | head -n 1)
           "$SDK_MANAGER" 'platforms;android-35' 'build-tools;35.0.0'
       - name: Build APK
-        run: gradle --no-daemon :app:assembleDebug :app:lintDebug
+        run: |
+          gradle --no-daemon :app:assembleDebug :app:lintDebug || {
+            cat app/build/intermediates/lint_intermediate_text_report/debug/lintReportDebug/lint-results-debug.txt
+            exit 1
+          }
       - uses: actions/upload-artifact@v4
         with:
           name: SitiGPS-1.4-debug-APK

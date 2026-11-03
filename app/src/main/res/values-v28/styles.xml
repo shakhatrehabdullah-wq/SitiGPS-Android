@@ -1,0 +1,2 @@
+<resources><style name="Theme.Siti" parent="BaseTheme.Siti"><item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item></style></resources>
+
