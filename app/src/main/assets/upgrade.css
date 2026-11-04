@@ -42,3 +42,51 @@ header{height:32px;min-height:32px}
 .gauge-menu{max-width:75px}
 .pill{padding:5px 7px}
 }
+
+/* 1.10: real BYD Dolphin portrait/landscape layout; never oversize WebView */
+html,body,.shell{width:100%!important;height:100%!important;max-width:100%!important;overflow:hidden!important}
+.shell{zoom:1!important;display:flex!important;flex-direction:column!important;padding:clamp(5px,1vh,12px)!important;gap:6px!important}
+header{flex:0 0 auto!important;min-height:38px!important;height:auto!important;max-height:58px;overflow:visible;gap:5px}
+.logo{flex:0 1 auto;min-width:0}.brand{font-size:clamp(14px,2.3vw,23px)}.sub{font-size:clamp(7px,1vw,11px)}
+.status{flex:0 1 auto;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:3px;min-width:0}
+.status .pill,.status select{font-size:clamp(9px,1vw,13px);padding:4px}
+.board{flex:1 1 auto!important;min-height:0!important;min-width:0!important;display:grid!important;grid-template-areas:'gauges map'!important;grid-template-columns:minmax(0,50%) minmax(0,50%)!important;gap:7px!important}
+.gauges,.mapcol{height:100%;min-height:0;min-width:0;overflow:hidden;display:flex;flex-direction:column;gap:6px}
+.speed{flex:1 1 auto;min-height:0;overflow:hidden}.dial{flex:0 1 auto!important;max-width:95%;max-height:calc(100% - 70px)}
+.mapframe{flex:1 1 auto;min-height:0;overflow:hidden}.mapbar{flex:0 0 auto}
+.minigauges{height:24%!important;min-height:0!important;max-height:120px;flex:0 0 auto}
+.footer{flex:0 0 auto!important;width:100%;min-height:35px!important;max-height:48px!important;overflow:hidden}
+@media (orientation:portrait){
+ .shell{padding:6px!important;gap:5px!important}
+ header{min-height:34px!important}
+ .mark{width:28px;height:28px}
+ .board{grid-template-columns:minmax(0,53%) minmax(0,47%)!important;gap:5px!important}
+ .gauges,.mapcol{gap:4px}
+ .speed{padding:2px}
+ .dial{max-height:calc(100% - 95px);max-width:100%}
+ .dial .big,.gauge-digital .big,.gauge-minimal .big{font-size:clamp(21px,4vw,40px)!important}
+ .speed>.title{font-size:10px}
+ .meta{font-size:9px;gap:2px}.meta b{font-size:11px}
+ .minigauges{height:18%!important;max-height:105px;grid-template-columns:1fr 1fr;gap:3px}
+ .mini strong{font-size:clamp(13px,3vw,22px)!important}
+ .mini .tiny{font-size:8px}
+ .mapframe{flex:0 0 62%;min-height:0}
+ .mapbar{display:flex;flex-wrap:wrap;gap:3px}
+ .mapbar input{width:100%;flex:1 0 100%;height:30px;padding:4px;font-size:10px}
+ .mapbar button{font-size:9px;padding:4px;flex:1 1 auto}
+ .mapctrl{right:4px;top:4px;flex-wrap:wrap;gap:3px}
+ .mapctrl button{font-size:9px;padding:4px}
+ .compass{width:27px;height:27px;font-size:10px;left:4px;top:4px}
+ .navbox{left:4px;right:4px;top:42px;padding:5px}
+ .navtext{font-size:10px}.navarrow{font-size:19px}.navmeta{font-size:9px}
+ .music label,.footer .coords{display:none}
+ .footer .music{gap:3px;min-width:0;padding:3px}
+ .footer .music input{font-size:10px;min-width:0}
+ .footer .pill,.footer .primary{padding:5px;font-size:10px}
+}
+@media (max-height:430px) and (orientation:landscape){
+ .shell{padding:4px!important}
+ header{min-height:28px!important}
+ .mapframe{flex:1 1 auto}
+ .minigauges{height:24%!important}
+}
