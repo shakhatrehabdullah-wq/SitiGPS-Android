@@ -1,4 +1,4 @@
 plugins { id 'com.android.application' }
 android { namespace 'com.siti.gps'; compileSdk 35
-  defaultConfig { applicationId 'com.siti.gps.live'; minSdk 26; targetSdk 28; versionCode 24; versionName '1.14' } }
+  defaultConfig { applicationId 'com.siti.gps.zoomfix'; minSdk 26; targetSdk 28; versionCode 25; versionName '1.15' } }
 dependencies { implementation 'androidx.webkit:webkit:1.12.1'; implementation 'androidx.core:core:1.13.1' }
