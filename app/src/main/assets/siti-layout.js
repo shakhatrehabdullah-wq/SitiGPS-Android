@@ -27,7 +27,17 @@
  var count=0;var dial=document.querySelector('.speed .dial');if(dial){dial.removeAttribute('style');}
  function telemetry(){var v=parseFloat((document.getElementById('speed')||{}).textContent)||0;var a=document.getElementById('accel');var accel=a?parseFloat(a.textContent)||0:0;var rpm1=Math.max(0,Math.min(9000,Math.round(v*26+Math.abs(accel)*190)));var rpm2=Math.max(0,Math.min(9000,Math.round(v*18+Math.abs(accel)*240)));var r1=document.getElementById('sitiRpm0'),r2=document.getElementById('sitiRpm1');if(r1)r1.textContent=rpm1;if(r2)r2.textContent=rpm2;var rings=document.querySelectorAll('.siti-rpm-ring');if(rings[0])rings[0].style.setProperty('--rpm',Math.min(1,rpm1/9000));if(rings[1])rings[1].style.setProperty('--rpm',Math.min(1,rpm2/9000));var d=document.getElementById('distance'),trip=document.getElementById('sitiTrip');if(d&&trip)trip.textContent=d.textContent+' (GPS)';}
  var observed=document.getElementById('speed');if(window.MutationObserver&&observed)new MutationObserver(telemetry).observe(observed,{childList:true,subtree:true});telemetry();
- function resize(){try{if(typeof map!=='undefined'&&map)map.invalidateSize({pan:false})}catch(e){}}
+ function fitDial(){
+  var panel=document.querySelector('.speed'),d=document.querySelector('.speed .dial');if(!panel||!d)return;
+  var size=Math.max(88,Math.min(panel.clientWidth*.65,panel.clientHeight*.48,285));
+  d.style.setProperty('width',Math.round(size)+'px','important');
+  d.style.setProperty('height',Math.round(size)+'px','important');
+  d.style.setProperty('min-width','0px','important');
+  d.style.setProperty('min-height','0px','important');
+  d.style.setProperty('max-height','none','important');
+  d.style.setProperty('max-width','none','important');
+ }
+ function resize(){fitDial();try{if(typeof map!=='undefined'&&map)map.invalidateSize({pan:false})}catch(e){}}
  window.addEventListener('resize',function(){setTimeout(resize,150)});
- setTimeout(resize,180);setTimeout(resize,900);
+ resize();setTimeout(resize,180);setTimeout(resize,900);
 })();
