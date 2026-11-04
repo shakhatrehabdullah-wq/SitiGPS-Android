@@ -42,5 +42,5 @@ function fitDashboard(){
  };
  document.querySelector('.status').append(b);
 });
-var release=document.createElement('span');release.className='release';release.textContent='v1.16';document.querySelector('.logo').append(release);
+var release=document.createElement('span');release.className='release';release.textContent='v1.17';document.querySelector('.logo').append(release);
 window.addEventListener('resize',function(){setTimeout(fitDashboard,100)});window.addEventListener('orientationchange',function(){setTimeout(fitDashboard,300)});setTimeout(fitDashboard,100);
