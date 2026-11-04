@@ -24,8 +24,23 @@ function navigationTick(accuracy){if(!navActive||!loc||!routeResult)return;const
 const baseUpdate=update;update=function(p){baseUpdate(p);document.querySelector('.needle').style.transform='rotate('+(-130+Math.min(240,Number(el('speed').textContent))/240*260)+'deg)';navigationTick(p.coords.accuracy)};
 el('scUrl').placeholder='اسم الأغنية أو الفنان';el('scUrl').setAttribute('aria-label','بحث SoundCloud');el('playBtn').textContent='بحث ♫';
 function openMusic(){const q=el('scUrl').value.trim();location.href='sitimusic://search?q='+encodeURIComponent(q)}el('playBtn').onclick=openMusic;el('scUrl').onkeydown=e=>{if(e.key==='Enter')openMusic()};el('musicToggle').onclick=()=>{location.href='sitimusic://resume'};
-var uiScale=Number(localStorage.getItem('sitiScale'))||1;
-function fitDashboard(){var shell=document.querySelector('.shell');shell.style.zoom='1';shell.style.width='100%';shell.style.height='100%';var panel=document.querySelector('.speed');var availableWidth=Math.max(60,panel.clientWidth-20);var availableHeight=Math.max(60,panel.clientHeight-105);var diameter=Math.max(60,Math.min(availableWidth,availableHeight,360));dial.style.width=diameter+'px';dial.style.height=diameter+'px';document.documentElement.style.setProperty('--siti-user-scale',String(uiScale));if(map){requestAnimationFrame(function(){map.invalidateSize({pan:false});if(loc&&follow)map.panTo([loc.lat,loc.lng],{animate:false});});}}
-[['−',-.1],['+',.1]].forEach(function(item){var b=document.createElement('button');b.className='pill scale-btn';b.textContent=item[0];b.setAttribute('aria-label','حجم الواجهة '+item[0]);b.onclick=function(){uiScale=Math.max(.8,Math.min(2,uiScale+item[1]));localStorage.setItem('sitiScale',uiScale);fitDashboard()};document.querySelector('.status').append(b)});
-var release=document.createElement('span');release.className='release';release.textContent='v1.14';document.querySelector('.logo').append(release);
+/* Stable legacy scale controls: do not resize shell or overwrite dashboard layout. */
+var uiScale=1;
+function fitDashboard(){
+ try{if(typeof map!=='undefined'&&map)map.invalidateSize({pan:false});}catch(e){}
+}
+[['−',-.1],['+',.1]].forEach(function(item){
+ var b=document.createElement('button');b.className='pill scale-btn';
+ b.textContent=item[0];b.setAttribute('aria-label','حجم العداد '+item[0]);
+ b.onclick=function(){
+  var d=document.querySelector('.speed .dial');if(!d)return;
+  var panel=document.querySelector('.speed');var current=d.getBoundingClientRect().width;
+  var max=Math.min(panel.clientWidth*.92,panel.clientHeight-82);
+  var size=Math.max(88,Math.min(max,current+item[1]*120));
+  d.style.setProperty('width',Math.round(size)+'px','important');
+  d.style.setProperty('height',Math.round(size)+'px','important');
+ };
+ document.querySelector('.status').append(b);
+});
+var release=document.createElement('span');release.className='release';release.textContent='v1.15';document.querySelector('.logo').append(release);
 window.addEventListener('resize',function(){setTimeout(fitDashboard,100)});window.addEventListener('orientationchange',function(){setTimeout(fitDashboard,300)});setTimeout(fitDashboard,100);
