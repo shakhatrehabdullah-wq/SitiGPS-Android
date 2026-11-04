@@ -24,15 +24,15 @@ jobs:
       - name: Build APK directly from Android sources
         run: gradle --no-daemon :app:assembleDebug
       - name: Copy raw standalone APK
-        run: cp app/build/outputs/apk/debug/app-debug.apk SitiGPS-1.16-Separate.apk
+        run: cp app/build/outputs/apk/debug/app-debug.apk SitiGPS-1.17-Separate.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: SitiGPS-1.16-Separate-APK
-          path: SitiGPS-1.16-Separate.apk
+          name: SitiGPS-1.17-Separate-APK
+          path: SitiGPS-1.17-Separate.apk
           if-no-files-found: error
       - name: Publish direct-download APK release
         if: github.ref == 'refs/heads/main'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create siti-gps-1.16 SitiGPS-1.16-Separate.apk --target "$GITHUB_SHA" --title "Siti GPS 1.16 Standalone" --notes "Fresh Android Gradle build from source. Separate package com.siti.gps.themefix so version 1.6 stays installed. This is a test build and does not replace existing Siti GPS installations." --latest
+          gh release create siti-gps-1.17 SitiGPS-1.17-Separate.apk --target "$GITHUB_SHA" --title "Siti GPS 1.17 Standalone" --notes "Fresh Android Gradle build from source. Separate package com.siti.gps.djfix so version 1.6 stays installed. This is a test build and does not replace existing Siti GPS installations." --latest
