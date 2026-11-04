@@ -66,8 +66,8 @@
   var panel=document.querySelector('.speed'),d=document.querySelector('.speed .dial');
   if(!panel||!d)return;
   var usable=Math.max(96,panel.clientHeight-83);
-  var base=Math.max(92,Math.min(panel.clientWidth*.82,usable*.91,355));
-  var size=Math.min(base*zoomFactor,Math.max(92,usable),panel.clientWidth*.93);
+  var base=Math.max(92,Math.min(panel.clientWidth*.57,usable*.91,310));
+  var size=Math.min(base*zoomFactor,Math.max(92,usable),panel.clientWidth*.6);
   size=Math.round(size);
   d.style.setProperty('width',size+'px','important');
   d.style.setProperty('height',size+'px','important');
