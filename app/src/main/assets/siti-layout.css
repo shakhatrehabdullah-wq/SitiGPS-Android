@@ -81,3 +81,54 @@ header{height:clamp(38px,5vh,62px)!important;min-height:38px!important;flex:none
  .status .tiny{display:none}
 }
 @media(prefers-reduced-motion:reduce){.siti-waves i,.dial:before,.dial:after{animation:none!important}}
+
+/* 1.12 readability and motion fix - intentionally overrides light-theme cyan */
+html,body,.shell,button,input,select{font-family:Tahoma,"Noto Sans Arabic","Segoe UI",Arial,sans-serif!important}
+body.light{--ink:#13243e;--muted:#344765;--cyan:#075d7d;--pink:#86358f;--edge:#b0bed1}
+body:not(.light){--ink:#f4f7ff;--muted:#b5c9dd;--cyan:#68efff}
+body.light .title,body.light .unit,body.light .siti-song h3,body.light .siti-vehicle h3,body.light .release,body.light .meta b,body.light .siti-rpm strong,body.light .mini strong,body.light .brand{color:#164269!important;-webkit-text-fill-color:#164269!important;text-shadow:none!important}
+body.light .siti-song h3,body.light .siti-vehicle h3{color:#21446c!important}
+body.light .panel{background:linear-gradient(135deg,#f8fbff,#e5eefc 85%)!important;border-color:#a7bad3!important}
+body.light .mini,body.light .siti-rpm{background:linear-gradient(145deg,#e9f0fb,#c8d9f2)!important}
+body.light .speed{background:radial-gradient(ellipse at center,#e2eeff,#f7faff 73%)!important}
+body.light .siti-rpm .tiny{color:#3d5370!important}
+.siti-left-tools{align-items:center!important;gap:8px!important;overflow:hidden!important}
+.siti-left-tools .siti-status{display:none!important}
+.siti-color-dot{width:clamp(20px,2.1vw,29px);height:clamp(20px,2.1vw,29px);padding:0!important;min-width:20px;flex:0 0 auto;display:inline-block;border:2px solid #ffffffcc;border-radius:50%;box-shadow:0 0 0 1px #3d5173,0 0 11px #8d5dff77;cursor:pointer;transition:transform .15s}
+.siti-color-dot:active{transform:scale(.85)}
+.siti-left-tools>.pill{background:linear-gradient(115deg,#1d305a,#7335be)!important;color:#fff!important;border:1px solid #7d73df!important;text-shadow:none!important}
+.speed{background:radial-gradient(ellipse at center,#253b6a75,#0b1324 76%)!important}
+.speed .dial{width:min(88%,39vh,380px)!important;max-height:calc(100% - 70px)!important;min-width:130px!important;min-height:130px!important;display:grid!important;place-items:center!important;isolation:isolate}
+.speed .dial svg{inset:0!important;position:absolute!important;width:100%!important;height:100%!important;display:block!important;opacity:1!important;filter:drop-shadow(0 0 8px #04dfff55)}
+.speed .dial .value{z-index:5!important;inset:0!important;display:flex!important;align-items:center!important;justify-content:center!important;flex-direction:column!important;transform:none!important}
+.speed .dial .big{font-size:clamp(36px,6.5vh,72px)!important;line-height:1!important;position:relative!important;z-index:5!important}
+.speed .meta{position:relative!important;z-index:4!important}
+.siti-ambience{z-index:1!important}
+.siti-rpm{justify-content:center!important;gap:3px!important;border:1px solid #865aff!important}
+.siti-rpm-ring{--rpm:0;position:relative;width:clamp(42px,6.5vh,85px);height:clamp(42px,6.5vh,85px);display:grid;place-items:center;border-radius:50%;background:conic-gradient(from 230deg,#18d9ff 0%,#9d59ff calc(var(--rpm)*220deg),#182b50 calc(var(--rpm)*220deg),#182b50 220deg,transparent 220deg);box-shadow:0 0 13px #7e4dff77,inset 0 0 10px #0c2754}
+.siti-rpm-ring:before{content:'';position:absolute;inset:6px;background:radial-gradient(circle at center,#1c335b,#0b1328);border-radius:50%;box-shadow:inset 0 0 9px #6a9bff50}
+.siti-rpm-ring strong{position:relative;z-index:2;color:#e8faff!important;font-size:clamp(14px,2.2vh,24px)!important;text-shadow:0 0 8px #02e6ff}
+.siti-rpm-needle{position:absolute;z-index:2;inset:0;border-radius:50%;border-top:2px solid #fc50e3;animation:siti-rpm-glow 2s ease-in-out infinite alternate}
+@keyframes siti-rpm-glow{from{filter:drop-shadow(0 0 2px #28e4ff);opacity:.65}to{filter:drop-shadow(0 0 10px #fe4efa);opacity:1}}
+.siti-vehicle{justify-content:center!important;padding:8px!important;gap:6px!important}
+.siti-vehicle-values{align-items:stretch!important;grid-auto-rows:minmax(37px,auto)!important;min-height:0!important}
+.siti-vehicle-values>div{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;padding:7px 3px!important;line-height:1.35!important;min-height:40px!important;overflow:visible!important;text-align:center!important}
+.siti-vehicle-values small{font-size:clamp(10px,1vw,13px)!important;line-height:1.25!important;font-weight:700!important;text-align:center!important}
+.siti-vehicle-values strong{display:block!important;font-size:clamp(11px,1.1vw,15px)!important;line-height:1.35!important;font-weight:800!important;text-align:center!important;white-space:normal!important;overflow-wrap:anywhere!important}
+.siti-vehicle-note{font-size:clamp(9px,.85vw,11px)!important;line-height:1.4!important;text-align:center!important}
+.siti-song h3,.siti-vehicle h3{font-weight:800!important;font-size:clamp(12px,1.2vw,16px)!important;line-height:1.45!important}
+.siti-gps-row .primary{background:linear-gradient(115deg,#163d66,#347bbe)!important;color:#fff!important}
+.siti-gps-row .pill{background:linear-gradient(115deg,#253355,#7040a9)!important;color:#fff!important}
+.siti-song{justify-content:center!important}
+.siti-update{background:linear-gradient(120deg,#294b8e,#643a96)!important;color:#fff!important;border-color:#637fe2!important}
+body.light .siti-color-dot{border-color:#fff}
+@media(max-height:550px){
+ .speed .dial{width:min(67%,31vh)!important;min-height:80px!important;min-width:80px!important;max-height:calc(100% - 44px)!important}
+ .speed .dial .big{font-size:clamp(25px,5vh,45px)!important}
+ .siti-vehicle-values>div{min-height:28px!important;padding:3px!important}
+ .siti-vehicle-note{font-size:8px!important}
+ .siti-rpm-ring{width:39px;height:39px}
+ .siti-rpm-ring strong{font-size:13px!important}
+ .siti-vehicle{gap:2px!important;padding:4px!important}
+ .siti-song{padding:4px!important}
+}
