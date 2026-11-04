@@ -184,3 +184,18 @@ body.light .siti-color-dot{border-color:#fff}
  .siti-rpm-ring{width:clamp(47px,10vh,65px)!important;height:clamp(47px,10vh,65px)!important;min-height:47px!important;min-width:47px!important}
  .speed .meta>div{padding:3px 2px!important}
 }
+
+/* 1.14 overrides for BYD light mode: readable dark instrument clusters */
+body.light .siti-rpm.panel,body.light .siti-rpm.panel.mini{
+ background:radial-gradient(circle at center,#273b74 0%,#0c1936 92%)!important;
+ color:#fff!important;border-color:#8674ff!important;
+ box-shadow:inset 0 0 13px #6f72ff66,0 0 9px #793fff66!important;
+}
+body.light .siti-rpm .title,body.light .siti-rpm .tiny{color:#eff4ff!important;-webkit-text-fill-color:#eff4ff!important;text-shadow:0 0 4px #625aff!important}
+body.light .siti-rpm .siti-rpm-ring strong{color:#ffffff!important;-webkit-text-fill-color:#ffffff!important}
+body.light .speed.panel{background:radial-gradient(circle,#223a71,#0b1734 85%)!important;color:white!important}
+body.light .speed .title,body.light .speed .unit{color:#e8faff!important;-webkit-text-fill-color:#e8faff!important}
+body.light .speed .meta>div{background:#11264c!important;border-color:#6587b9!important;color:#e8faff!important}
+.speed .dial{box-sizing:border-box!important;flex:0 0 auto!important;border-radius:50%!important;aspect-ratio:1!important}
+.siti-rpm-ring{flex:none!important;aspect-ratio:1!important}
+.siti-rpm.panel{gap:2px!important}
