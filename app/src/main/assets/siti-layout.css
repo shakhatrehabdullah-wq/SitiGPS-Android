@@ -132,3 +132,55 @@ body.light .siti-color-dot{border-color:#fff}
  .siti-vehicle{gap:2px!important;padding:4px!important}
  .siti-song{padding:4px!important}
 }
+
+/* v1.13: high-contrast lively instrumentation on white BYD head units */
+.speed.panel{
+ background:radial-gradient(ellipse at center,#253866 0%,#0c1d3a 70%,#070f23 100%)!important;
+ border-color:#6a86c4!important;color:#effaff!important;
+ box-shadow:inset 0 0 50px #545fe933,0 0 15px #905cff4d!important
+}
+.speed>.title{color:#d4ecff!important;font-weight:900!important;font-size:clamp(12px,1.2vw,16px)!important}
+.speed .dial{
+ width:min(85%,46vh,355px)!important;
+ height:min(85%,46vh,355px)!important;
+ max-height:calc(100% - 84px)!important;max-width:96%!important;
+ min-width:110px!important;min-height:110px!important;
+ flex:0 1 auto!important;margin:8px auto!important;
+ background:radial-gradient(circle,#192c59,#111c3a 65%,#0c1732)!important;
+ border:3px solid #39d8fa!important;
+ box-shadow:0 0 12px #00d5ff,0 0 32px #9542ff77,inset 0 0 30px #6c4dff44!important
+}
+.speed .dial svg{opacity:1!important;filter:drop-shadow(0 0 8px #00dcff)!important}
+.speed .dial .big{color:white!important;-webkit-text-fill-color:white!important;text-shadow:0 0 8px #01dfff,0 0 20px #9554ff!important;font-size:clamp(36px,7vh,76px)!important}
+.speed .dial .unit{color:#bdedff!important;-webkit-text-fill-color:#bdedff!important}
+.speed .dial:before{inset:-10px!important;border:4px solid transparent!important;border-top-color:#11f0ff!important;border-bottom-color:#e94eff!important}
+.speed .dial:after{inset:-18px!important;border:2px dashed #d278ff!important}
+.speed .meta{margin-top:8px!important;z-index:4!important}
+.speed .meta>div{background:#132649!important;border:1px solid #506cad!important;color:#cedcf4!important;padding:5px 2px!important;font-weight:600}
+.speed .meta b{color:#ffffff!important;-webkit-text-fill-color:#ffffff!important}
+.siti-ambience{inset:8px!important;opacity:1!important;z-index:1!important}
+.siti-waves{height:60%!important;width:14%!important;gap:3px!important;opacity:1!important}
+.siti-waves i{min-height:5px!important;box-shadow:0 0 6px #00dfff,0 0 12px #b944ff!important}
+.minigauges{height:clamp(100px,20vh,155px)!important;max-height:29%!important;gap:7px!important}
+.siti-rpm.panel{background:radial-gradient(ellipse at center,#233967,#09182f 95%)!important;border:1px solid #7761ef!important;box-shadow:inset 0 0 15px #695aff44,0 0 12px #894aff50!important;color:#effaff!important}
+.siti-rpm-ring{width:clamp(60px,9vh,95px)!important;height:clamp(60px,9vh,95px)!important;min-width:60px!important;min-height:60px!important;
+ background:conic-gradient(from 210deg,#27efff,#814cff,#f450d3,#143454 80%,#27efff)!important;
+ border:2px solid #24e7ff!important;box-shadow:0 0 12px #01caff,0 0 22px #a040ff99,inset 0 0 13px #5b44ff!important;
+ animation:siti-rpm-pulse 2s ease-in-out infinite alternate
+}
+.siti-rpm-ring:before{inset:7px!important;background:#0b1939!important;border:1px solid #4968b5}
+.siti-rpm-ring strong{color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:clamp(16px,2.5vh,27px)!important}
+.siti-rpm .title{color:#d9eaff!important;font-weight:900!important}
+.siti-rpm .tiny{color:#b8cffa!important}
+@keyframes siti-rpm-pulse{from{filter:brightness(.95)}to{filter:brightness(1.32)}}
+.siti-left-tools{justify-content:center!important;min-height:30px!important}
+.siti-left-tools .siti-status{display:none!important}
+.siti-vehicle-values>div{justify-content:center!important;align-items:center!important;text-align:center!important}
+.siti-update{background:linear-gradient(125deg,#314e88,#7253bf)!important;color:white!important}
+@media(max-height:560px){
+ .speed .dial{width:min(73%,40vh,260px)!important;height:min(73%,40vh,260px)!important;min-height:85px!important;min-width:85px!important;max-height:calc(100% - 67px)!important}
+ .speed .dial .big{font-size:clamp(29px,6vh,53px)!important}
+ .minigauges{height:clamp(78px,18vh,114px)!important;max-height:26%!important}
+ .siti-rpm-ring{width:clamp(47px,10vh,65px)!important;height:clamp(47px,10vh,65px)!important;min-height:47px!important;min-width:47px!important}
+ .speed .meta>div{padding:3px 2px!important}
+}
