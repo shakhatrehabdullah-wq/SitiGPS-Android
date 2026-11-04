@@ -5,17 +5,49 @@
  // Safe re-render when an updated UI script arrives: preserve map/GPS and music.
  var oldSong=document.querySelector('.siti-song');
  if(oldSong){var player=oldSong.querySelector('.music');var footer=document.querySelector('.footer');if(player&&footer)footer.insertBefore(player,footer.firstChild);}
- ['.siti-ambience','.siti-left-tools','.siti-gps-row','.siti-song','.siti-vehicle','.siti-update'].forEach(function(q){var node=document.querySelector(q);if(node&&node.parentNode)node.parentNode.removeChild(node)});
+ ['.siti-ambience','.siti-dj-stage','.siti-left-tools','.siti-gps-row','.siti-song','.siti-vehicle','.siti-update'].forEach(function(q){var node=document.querySelector(q);if(node&&node.parentNode)node.parentNode.removeChild(node)});
 
  var speed=document.querySelector('.speed'),mini=document.querySelector('.minigauges');
  var wave=document.createElement('div');wave.className='siti-ambience';wave.setAttribute('aria-hidden','true');
- ['left','right'].forEach(function(side){var w=document.createElement('div');w.className='siti-waves '+side;for(var i=0;i<11;i++){var b=document.createElement('i');b.style.setProperty('--h',(25+(i*31+17)%65)+'%');b.style.setProperty('--delay',(-i*.09)+'s');w.appendChild(b)}wave.appendChild(w)});
+ ['left','right'].forEach(function(side){var w=document.createElement('div');w.className='siti-waves '+side;for(var i=0;i<12;i++){var b=document.createElement('i');b.style.setProperty('--h',(30+(i*19+13)%67)+'%');b.style.setProperty('--delay',(-i*.11)+'s');w.appendChild(b)}wave.appendChild(w)});
  speed.insertBefore(wave,speed.firstChild);
+ // Dedicated large side bars, outside the tiny speed value; use non-audio ambient animation.
+ var visuals=document.createElement('div');visuals.className='siti-dj-stage';visuals.setAttribute('aria-hidden','true');
+ ['left','right'].forEach(function(side){var bank=document.createElement('div');bank.className='siti-dj-bank '+side;for(var k=0;k<16;k++){var bar=document.createElement('span');bar.style.setProperty('--i',String(k));bar.style.setProperty('--delay',(-.07*k)+'s');bar.style.setProperty('--bar-height',(28+(k*23)%67)+'%');bank.appendChild(bar)}visuals.appendChild(bank)});
+ speed.appendChild(visuals);
  var tools=document.createElement('div');tools.className='siti-left-tools';gauges.insertBefore(tools,speed);
  var t=document.createElement('span');t.className='siti-status';t.textContent='';t.setAttribute('aria-hidden','true');tools.appendChild(t);
- [['سماوي','#00e5ff'],['بنفسجي','#a966ff'],['وردي','#ff38c7']].forEach(function(ac){var b=document.createElement('button');b.className='pill';b.textContent='';b.className='siti-color-dot';b.style.background=ac[1];b.setAttribute('aria-label',ac[0]);b.title=ac[0];b.onclick=function(){document.body.style.setProperty('--cyan',ac[1]);try{localStorage.setItem('sitiAccentV2',ac[1])}catch(e){}};tools.appendChild(b)});
- try{var col=localStorage.getItem('sitiAccentV2');if(col)document.body.style.setProperty('--cyan',col)}catch(e){}
- var dj=document.createElement('button');dj.className='pill';dj.textContent='DJ مؤثرات ✓';dj.setAttribute('aria-pressed','true');dj.onclick=function(){var on=dj.getAttribute('aria-pressed')!=='true';dj.setAttribute('aria-pressed',String(on));dj.textContent=on?'DJ مؤثرات ✓':'DJ مؤثرات ×';wave.style.display=on?'flex':'none'};tools.appendChild(dj);
+ // Style palette changes the complete gauge appearance, not just the label color.
+ var palettes=[
+  {name:'أزرق',color:'#19c8f2',rgb:'25,200,242',second:'#277bff'},
+  {name:'بنفسجي',color:'#b07cff',rgb:'176,124,255',second:'#e462fd'},
+  {name:'ذهبي',color:'#ffb342',rgb:'255,179,66',second:'#ef657a'}
+ ];
+ function applyPalette(index){
+  index=Math.max(0,Math.min(palettes.length-1,index));
+  var p=palettes[index];
+  document.body.style.setProperty('--siti-accent',p.color);
+  document.body.style.setProperty('--siti-accent-rgb',p.rgb);
+  document.body.style.setProperty('--siti-accent-2',p.second);
+  document.body.setAttribute('data-siti-palette',String(index));
+  var dots=tools.querySelectorAll('.siti-color-dot');
+  for(var j=0;j<dots.length;j++)dots[j].setAttribute('aria-pressed',String(j===index));
+  try{localStorage.setItem('sitiPalette',String(index));}catch(e){}
+ }
+ palettes.forEach(function(p,index){
+  var b=document.createElement('button');b.type='button';
+  b.className='siti-color-dot';b.setAttribute('aria-label','لون العداد '+p.name);
+  b.style.background='linear-gradient(135deg,'+p.color+','+p.second+')';
+  b.onclick=function(){applyPalette(index)};
+  tools.appendChild(b);
+ });
+ var saved=0;try{saved=parseInt(localStorage.getItem('sitiPalette')||'0',10)||0}catch(e){}
+ var djEnabled=true;
+ var dj=document.createElement('button');dj.type='button';dj.className='pill siti-dj-toggle';dj.textContent='DJ ON';
+ dj.setAttribute('aria-pressed','true');
+ dj.onclick=function(){djEnabled=!djEnabled;document.body.classList.toggle('siti-dj-off',!djEnabled);dj.setAttribute('aria-pressed',String(djEnabled));dj.textContent=djEnabled?'DJ ON':'DJ OFF'};
+ tools.appendChild(dj);
+ applyPalette(saved);
  var gpsrow=document.createElement('div');gpsrow.className='siti-gps-row';
  var nav=document.createElement('button');nav.className='primary';nav.textContent='Navigate · الملاحة';nav.onclick=function(){var input=document.getElementById('destination');if(input){input.focus();input.scrollIntoView({block:'nearest'})}};
  var fix=document.createElement('button');fix.className='pill';fix.textContent='GPS ↗';fix.onclick=function(){if(typeof follow!=='undefined'){follow=true;var b=document.getElementById('followBtn');if(b)b.textContent='تتبّع ✓'}if(typeof map!=='undefined'&&map&&typeof loc!=='undefined'&&loc){map.setView([loc.lat,loc.lng],16)}};
