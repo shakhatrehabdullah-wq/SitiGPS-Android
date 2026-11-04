@@ -2,6 +2,11 @@
 (function(){
  var board=document.querySelector('.board'),gauges=document.querySelector('.gauges'),mapcol=document.querySelector('.mapcol');
  if(!board||!gauges||!mapcol)return;
+ // Safe re-render when an updated UI script arrives: preserve map/GPS and music.
+ var oldSong=document.querySelector('.siti-song');
+ if(oldSong){var player=oldSong.querySelector('.music');var footer=document.querySelector('.footer');if(player&&footer)footer.insertBefore(player,footer.firstChild);}
+ ['.siti-ambience','.siti-left-tools','.siti-gps-row','.siti-song','.siti-vehicle','.siti-update'].forEach(function(q){var node=document.querySelector(q);if(node&&node.parentNode)node.parentNode.removeChild(node)});
+
  var speed=document.querySelector('.speed'),mini=document.querySelector('.minigauges');
  var wave=document.createElement('div');wave.className='siti-ambience';wave.setAttribute('aria-hidden','true');
  ['left','right'].forEach(function(side){var w=document.createElement('div');w.className='siti-waves '+side;for(var i=0;i<11;i++){var b=document.createElement('i');b.style.setProperty('--h',(25+(i*31+17)%65)+'%');b.style.setProperty('--delay',(-i*.09)+'s');w.appendChild(b)}wave.appendChild(w)});
