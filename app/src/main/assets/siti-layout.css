@@ -1,0 +1,83 @@
+/* Siti 1.11 – BYD balanced dashboard, from original 1.5 visual identity. */
+:root{--electric:#00e5ff;--violet:#9d65ff;--magenta:#ff2dba}
+html,body{width:100%;height:100%;overflow:hidden!important}
+body{--cyan:var(--electric);--pink:var(--magenta)}
+.shell{width:100%!important;height:100vh!important;height:100dvh!important;zoom:1!important;transform:none!important;padding:clamp(6px,.8vw,13px)!important;gap:clamp(5px,.6vw,10px)!important;overflow:hidden!important;background:radial-gradient(ellipse at 22% 8%,#7432ed25,transparent 50%),var(--base)}
+header{height:clamp(38px,5vh,62px)!important;min-height:38px!important;flex:none;gap:5px!important}
+.logo{min-width:0;gap:7px}.brand{font-size:clamp(15px,2.1vw,23px)}.sub{font-size:clamp(8px,1vw,11px)}
+.status{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:4px;min-width:0;max-width:70%}
+.status button,.status select{padding:5px 7px;font-size:clamp(10px,.85vw,13px)}
+.board{flex:1 1 auto!important;min-height:0!important;display:grid!important;grid-template-columns:minmax(0,50fr) minmax(0,50fr)!important;grid-template-areas:'gauges map'!important;gap:clamp(6px,.8vw,13px)!important;direction:ltr}
+.gauges,.mapcol{min-height:0!important;min-width:0!important;direction:rtl;display:flex!important;flex-direction:column!important;gap:6px!important;overflow:hidden!important}
+.panel{border-radius:clamp(10px,1.1vw,20px);border:1px solid #364366;background:linear-gradient(155deg,#7043bf14,transparent 62%),var(--panel);box-shadow:0 8px 22px #0002}
+.speed{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important;padding:clamp(5px,1.1vh,13px)!important;position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.speed>.title,.speed>.meta{z-index:2}
+.speed .dial{flex:0 1 auto!important;width:min(82%,37vh,350px)!important;height:auto!important;aspect-ratio:1!important;max-height:calc(100% - 83px)!important;min-height:0!important;position:relative;z-index:2;border-radius:50%;box-shadow:0 0 18px #00deff25,inset 0 0 20px #8244fd20}
+.dial svg{width:100%!important;height:100%!important}
+.big{font-size:clamp(25px,6.5vh,74px)!important;text-shadow:0 0 14px #00eeff55}
+.gauge-digital .big,.gauge-minimal .big{font-size:clamp(26px,7vh,80px)!important}
+.dial:before{content:'';position:absolute;inset:-5px;border-radius:50%;border:2px solid transparent;border-top-color:var(--cyan);border-bottom-color:var(--magenta);animation:siti-orbit 8s linear infinite;pointer-events:none}
+.dial:after{content:'';position:absolute;inset:-12px;border-radius:50%;border:1px dashed #aa6aff77;animation:siti-orbit 20s linear infinite reverse;pointer-events:none}
+@keyframes siti-orbit{to{transform:rotate(360deg)}}
+.siti-ambience{position:absolute;inset:5%;z-index:0;pointer-events:none;display:flex;justify-content:space-between;align-items:center}
+.siti-waves{height:45%;width:13%;display:flex;align-items:center;gap:2px;opacity:.8}
+.siti-waves i{display:block;flex:1;height:var(--h);background:linear-gradient(0deg,var(--cyan),var(--violet),var(--magenta));border-radius:12px;box-shadow:0 0 8px #c443ff66;animation:siti-beat 1.35s ease-in-out infinite alternate;animation-delay:var(--delay)}
+@keyframes siti-beat{0%{transform:scaleY(.22);opacity:.45}100%{transform:scaleY(1.1);opacity:1}}
+.speed .meta{width:100%;margin-top:5px!important;display:flex;gap:5px!important;flex-wrap:wrap}
+.meta>div{min-width:0;flex:1;text-align:center;border:1px solid var(--edge);border-radius:9px;padding:4px 2px;background:#6161cf0b;font-size:clamp(8px,.85vw,11px)}
+.meta b{font-size:clamp(11px,1.3vw,17px)!important;color:var(--cyan)}
+.siti-left-tools{display:flex;flex:0 0 auto;gap:4px;align-items:center;flex-wrap:wrap;min-height:28px;max-height:68px;overflow:auto}
+.siti-left-tools button{padding:4px 8px;font-size:clamp(9px,.85vw,12px)}
+.siti-status{font-size:10px;color:var(--muted);max-width:160px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.minigauges{flex:0 0 auto!important;min-height:0!important;height:clamp(68px,15vh,120px)!important;max-height:22%!important;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+.mini{padding:3px}.mini strong{font-size:clamp(17px,3.2vh,28px)!important}.mini .title{font-size:10px}
+.siti-gps-row{display:flex;gap:4px;flex:0 0 auto;min-height:30px;align-items:center}
+.siti-gps-row>*{flex:1 1 0;min-width:0}
+.siti-gps-row button{font-size:clamp(9px,.9vw,13px);padding:5px}
+.mapframe{flex:0 1 auto!important;min-height:0!important;max-height:none!important;height:66%!important;overflow:hidden!important;position:relative}
+.mapbar{flex:0 0 auto;min-height:32px!important;display:flex;flex-wrap:wrap;gap:4px}
+.mapbar input{flex:1 1 100%;padding:7px;font-size:clamp(10px,.95vw,13px)}
+.mapbar button{flex:1 1 0;padding:6px 3px;font-size:clamp(9px,.9vw,12px)}
+.siti-song{flex:0 0 auto;min-height:64px;max-height:22%;overflow:hidden;padding:7px;display:flex;flex-direction:column;gap:4px}
+.siti-song h3,.siti-vehicle h3{margin:0;font-size:clamp(11px,1.15vw,15px);color:var(--cyan)}
+.siti-song .music{width:100%;padding:0;gap:4px}
+.siti-song .music label{display:none}
+.siti-song .music input{min-width:0;font-size:clamp(9px,.85vw,12px);padding:5px}
+.siti-song .music button{padding:5px;font-size:11px}
+.siti-vehicle{flex:1 1 auto;min-height:50px;display:flex;flex-direction:column;gap:4px;overflow:hidden;padding:7px}
+.siti-vehicle-values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;min-height:0}
+.siti-vehicle-values>div{background:#7b57fb0d;border:1px solid var(--edge);border-radius:8px;padding:4px 2px;text-align:center;overflow:hidden}
+.siti-vehicle-values small{display:block;color:var(--muted);font-size:clamp(8px,.72vw,11px)}
+.siti-vehicle-values strong{font-size:clamp(10px,1.2vw,15px);color:var(--ink)}
+.siti-vehicle-note{font-size:9px;color:var(--muted)}
+.shell>.footer{display:none!important}
+.siti-update{font-size:10px!important}
+.siti-rpm{border-radius:12px;position:relative;overflow:hidden;background:radial-gradient(circle at center,#15294f,#12182d)}
+.siti-rpm:after{content:'';position:absolute;inset:3px;pointer-events:none;border-radius:10px;border-top:2px solid var(--magenta)}
+.siti-rpm .tiny{font-size:9px!important}
+.soundframe{z-index:1200!important;right:2%!important;bottom:2%!important;max-width:65%!important;max-height:40%!important}
+@media(max-height:550px){
+ .shell{padding:4px!important;gap:4px!important}
+ header{min-height:30px!important;height:32px!important}
+ .brand{font-size:16px}.mark{width:29px;height:29px}
+ .speed .dial{width:min(77%,35vh)!important;max-height:calc(100% - 52px)!important}
+ .speed .meta{gap:2px!important}.meta>div{padding:2px;font-size:9px}
+ .minigauges{height:19%!important}
+ .siti-song{min-height:48px;padding:4px}
+ .siti-vehicle{padding:4px;min-height:38px}
+ .mapframe{height:60%!important}
+ .siti-left-tools{max-height:42px}
+}
+@media(orientation:portrait){
+ .board{grid-template-columns:minmax(0,51fr) minmax(0,49fr)!important;gap:4px!important}
+ .shell{padding:5px!important}
+ .mapframe{height:57%!important}
+ .speed .dial{width:min(95%,30vh)!important}
+ .siti-vehicle-values{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .siti-song{min-height:58px}
+ .siti-left-tools{max-height:90px}
+ .siti-vehicle-note{font-size:8px}
+ .status{max-width:65%}
+ .status .tiny{display:none}
+}
+@media(prefers-reduced-motion:reduce){.siti-waves i,.dial:before,.dial:after{animation:none!important}}
