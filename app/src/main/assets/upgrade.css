@@ -2,3 +2,43 @@
 /* Legacy Android WebView and large head-unit layout. */
 .brand{color:#22ecd9;-webkit-background-clip:text;-webkit-text-fill-color:transparent}.dial{display:flex;align-items:center;justify-content:center;flex:none;position:relative}.dial svg{display:block;position:absolute;left:0;top:0;width:100%;height:100%}.dial .value{position:absolute;left:0;right:0;top:0;bottom:0}.dial .big{font-size:64px}.gauge-digital .big,.gauge-minimal .big{font-size:76px}.mini strong{font-size:28px}.speed>.title{margin-bottom:4px}.meta{margin-top:5px}.gauges>*+*,.mapcol>*+*{margin-top:8px}.logo>*+*,.status>*+*,.mapbar>*+*,.footer>*+*,.music>*+*{margin-right:7px}.board{grid-template-columns:40% minmax(0,1fr)}.soundframe{width:420px;max-width:90%}.shell{transform-origin:top left}.scale-btn{padding:5px 8px;min-width:32px;font-size:15px}.release{font-size:11px;color:var(--cyan)}.runtime-error{position:fixed;bottom:0;left:0;right:0;background:#882222;color:#fff;z-index:9999;padding:10px;text-align:center}
 @media(max-height:430px){.dial .big{font-size:42px}.gauge-digital .big,.gauge-minimal .big{font-size:54px}.mini strong{font-size:22px}}
+
+
+/* v1.6: responsive, head-unit-safe dashboard sizing */
+.shell{min-width:0;min-height:0}
+.board{min-width:0;min-height:0;grid-template-columns:minmax(0,40fr) minmax(0,60fr)}
+.gauges,.mapcol,.speed,.mapframe{min-width:0;min-height:0}
+.speed{overflow:hidden}
+.dial{min-width:0;min-height:0;max-width:100%;max-height:100%;aspect-ratio:1}
+.dial .big{font-size:clamp(24px,5.8vh,64px)}
+.gauge-digital .big,.gauge-minimal .big{font-size:clamp(28px,7vh,72px)}
+.meta{flex-wrap:wrap;gap:3px}
+.meta>div{min-width:0;text-align:center}
+.minigauges{min-height:0;height:29%;flex-shrink:0}
+.mapbar{min-width:0}
+.mapbar input{min-width:0}
+.footer{min-width:0;flex-shrink:0}
+@media(max-height:550px){
+.shell{padding:5px;gap:4px}
+header{height:32px;min-height:32px}
+.board{gap:5px}
+.gauges,.mapcol{gap:4px}
+.panel{border-radius:10px}
+.speed{padding:2px}
+.dial .big{font-size:clamp(22px,7vh,43px)}
+.gauge-digital .big,.gauge-minimal .big{font-size:clamp(26px,8vh,52px)}
+.minigauges{height:30%;min-height:0;gap:4px}
+.mini strong{font-size:clamp(17px,5vh,25px)}
+.title{font-size:10px}
+.meta{font-size:9px}
+.meta b{font-size:11px}
+.mapbar input,.mapbar button{padding:5px;font-size:11px}
+.footer{min-height:32px;max-height:32px}
+.music input,.music button{padding:4px}
+}
+@media(max-width:720px) and (orientation:portrait){
+.board{grid-template-columns:minmax(0,42fr) minmax(0,58fr)}
+.status{gap:3px}
+.gauge-menu{max-width:75px}
+.pill{padding:5px 7px}
+}
